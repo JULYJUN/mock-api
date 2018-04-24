@@ -1,6 +1,22 @@
 <template>
   <div class="hello">
-    {{data}}
+    <h2>
+      <span style="border-bottom: 3px solid red">如何生成文章</span>
+    </h2>
+    template：
+    <pre class="word" style="text-align: left;font-size: 20px;">
+      var Random = Mock.Random
+      Mock.mock('api/data/article',(req,res) => {
+        Random.paragraph()
+          return {
+          data:Mock.mock(
+          '@paragraph'
+          )
+        }
+      })
+    </pre>
+    result:
+    <div class="result">{{data}}</div>
   </div>
 </template>
 
@@ -14,8 +30,8 @@ export default {
     }
   },
   mounted(){
-    this.$axios.get('api/data/string').then(res=>{
-      this.data = res.data
+    this.$axios.get('api/data/article').then(res=>{
+      this.data = res.data.data
       console.log(res)
     })
   }
@@ -26,6 +42,7 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  text-align:center;
 }
 ul {
   list-style-type: none;
@@ -38,4 +55,17 @@ li {
 a {
   color: #42b983;
 }
+.hello{
+  width:1000px;
+  margin:0 auto;
+}
+  .word{
+    background:#f4f4f4;
+    padding:20px;
+    font-size:16px;
+  }
+  .result{
+    background:#eaeaea;
+    padding:18px;
+  }
 </style>
