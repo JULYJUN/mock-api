@@ -17,3 +17,12 @@ Mock.mock('api/data/article',(req,res) => {
     )
   }
 })
+
+Mock.mock('api/data/integer',(req,res) => {
+  Random.integer()
+  return {
+    data:Mock.mock(
+      '@integer'
+    )
+  }
+})
