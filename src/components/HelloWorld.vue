@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    hahahahaha
+    {{data}}
   </div>
 </template>
 
@@ -9,8 +9,15 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      data: []
     }
+  },
+  mounted(){
+    this.$axios.get('api/data/string').then(res=>{
+      this.data = res.data
+      console.log(res)
+    })
   }
 }
 </script>
